@@ -1,6 +1,6 @@
 class Tendril
 {
-  public final static int SEG_LENGTH = 4; //length of each segment in the tendril
+  public final static int SEG_LENGTH = 1; //length of each segment in the tendril
   private int myNumSegments, myX, myY;
   private double myAngle;
   
@@ -12,10 +12,34 @@ class Tendril
    */
   public Tendril(int len, double theta, int x, int y)
   {
-    //your code here
+    myNumSegments = len;
+    myAngle = theta;
+    myX = x;
+    myY = y;
   }
   public void show()
   {
-    //your code here
+    if(myNumSegments >= 50)
+      stroke(255, 0, 0);
+    else if(myNumSegments >= 10)
+      stroke(0, 255, 0);
+    else
+      stroke(0, 0, 255);
+    float startX = myX;
+    float startY = myY;
+    float endX = 0;
+    float endY = 0;
+    for(int i = 0; i < myNumSegments; i++){
+      myAngle += (double)(Math.random()*0.4)-0.2;  
+      endX = startX + 3*cos((float)myAngle*SEG_LENGTH);
+      endY = startY + 3*sin((float)myAngle*SEG_LENGTH);
+      line(startX, startY, endX, endY);
+      startX = endX;
+      startY = endY;
+    }
+    
+    if(myNumSegments >= 3){
+      Cluster c = new Cluster(myNumSegments/5, (int)endX, (int)endY);
+    }
   }
 }
