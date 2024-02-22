@@ -20,7 +20,7 @@ class Tendril
   public void show()
   {
     if(myNumSegments >= 50)
-      stroke(255, 105, 97);
+      stroke(138, 3, 3);
     else if(myNumSegments >= 10)
       stroke(214, 117, 114);
     else
